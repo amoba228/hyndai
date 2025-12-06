@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hyundai - Нова ELANTRA</title>
+
     <style>
         /* CSS */
         body {
@@ -12,11 +13,13 @@
             padding: 0;
             color: #333;
             scroll-behavior: smooth;
+            background: #fff;
         }
         a {
             text-decoration: none;
         }
 
+        /* -------------------- HEADER -------------------- */
         .header {
             display: flex;
             justify-content: space-between;
@@ -35,16 +38,18 @@
             margin: 0 15px;
             color: #333;
             font-weight: bold;
-            transition: color 0.3s;
+            transition: 0.3s;
         }
         .nav-buttons a:hover {
             color: #0b588a;
+            transform: scale(1.05);
         }
         .search-icon {
             font-size: 20px;
             cursor: pointer;
         }
 
+        /* -------------------- HERO -------------------- */
         .hero-section {
             position: relative;
             height: 500px;
@@ -54,26 +59,28 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1;
         }
         .hero-content {
             position: absolute;
             top: 50%;
             left: 50px;
             transform: translateY(-50%);
-            z-index: 2;
             color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+            opacity: 0;
+            animation: heroFade 1.3s forwards ease-out;
         }
         .hero-content h1 {
             font-size: 50px;
-            font-weight: bold;
             margin: 0;
         }
 
+        @keyframes heroFade {
+            from { opacity: 0; transform: translate(-40px, -50%); }
+            to { opacity: 1; transform: translate(0, -50%); }
+        }
+
+        /* -------------------- TEXT BLOCKS -------------------- */
         .text-block {
             padding: 80px 150px;
             text-align: center;
@@ -83,18 +90,79 @@
             font-weight: 800;
             margin-bottom: 30px;
         }
+
         .text-block p {
             font-size: 16px;
             line-height: 1.8;
             max-width: 800px;
             margin: 0 auto 40px auto;
         }
-        .image-gallery img {
-            width: 100%;
-            margin-bottom: 40px;
-            border-radius: 8px;
+
+        /* -------------------- FADE IN ANIMATION -------------------- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
+        /* -------------------- IMAGE GALLERY -------------------- */
+        .image-gallery img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            transition: transform 0.5s ease, box-shadow 0.4s ease;
+        }
+        .image-gallery img:hover {
+            transform: scale(1.04);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.25);
+        }
+
+        /* -------------------- SLIDER -------------------- */
+        .photo-slider {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: 550px;
+            margin: 40px auto;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .photo-slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.5s ease;
+        }
+
+        .slide-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 14px 18px;
+            font-size: 35px;
+            cursor: pointer;
+            z-index: 10;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .slide-arrow:hover {
+            background: rgba(0,0,0,0.8);
+            transform: translateY(-50%) scale(1.15);
+        }
+
+        .slide-arrow.left { left: 20px; }
+        .slide-arrow.right { right: 20px; }
+
+        /* -------------------- SPECS -------------------- */
         .specs-section {
             padding: 60px 150px;
             background: #f5f7fa;
@@ -136,6 +204,7 @@
             font-weight: bold;
         }
 
+        /* -------------------- FOOTER -------------------- */
         footer {
             padding: 40px;
             text-align: center;
@@ -143,6 +212,12 @@
             color: white;
         }
 
+        .swabra {
+            width: 250px;
+            height: 100px;
+        }
+
+        /* RESPONSIVE */
         @media (max-width: 992px) {
             .text-block, .specs-section {
                 padding: 60px 30px;
@@ -151,64 +226,12 @@
                 font-size: 35px;
             }
         }
-        @media (max-width: 600px) {
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .nav-buttons {
-                margin: 10px 0;
-            }
-        }
-        .photo-slider {
-            position: relative;
-            width: 100%;
-            max-width: 1200px;
-            height: 550px;
-            margin: 40px auto;
-            overflow: hidden;
-            border-radius: 10px;
-        }
-
-        .photo-slider img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .slide-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.5);
-            color: white;
-            border: none;
-            padding: 14px 18px;
-            font-size: 35px;
-            cursor: pointer;
-            z-index: 10;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-
-        .slide-arrow:hover {
-            background: rgba(0,0,0,0.8);
-        }
-
-        .slide-arrow.left {
-            left: 20px;
-        }
-
-        .slide-arrow.right {
-            right: 20px;
-        }
-        .swabra {
-            width: 250px;
-            height: 100px
-        }
     </style>
 </head>
+
 <body>
+
+    <!-- HEADER -->
     <header class="header">
         <div class="logo">
             <img src="https://hyundai.com.ua/sites/default/files_actual/logo.svg" alt="Hyundai Logo">
@@ -222,51 +245,54 @@
         <div class="search-icon">&#9906;</div>
         <h1>📞0 800 507 555</h1>
     </header>
-    <main>
-        <section class="hero-section" id="golovna">
-            <img src="https://hyundai.com.ua/sites/all/themes/responsive/images/elantra2023/highlights/elantra-highlights-kv-pc.jpg" alt="Нова ELANTRA" class="hero-image">
-            <div class="hero-content">
-                <h1>Нова ELANTRA</h1>
-            </div>
-        </section>
 
-        <section class="text-block" id="gallery">
-            <h2>Втілення сміливості.</h2>
-            <p>Нова ELANTRA виразна та витончена з іще більш стильними змінами. Вишукана спортивність, довершений дизайн салону, підвищена безпека і функції комфорту створюють простір, оптимізований для тих, хто готовий кинути виклик майбутньому на власних умовах.</p>
-            <div class="image-gallery">
-                <img src="https://learn.logikaschool.com/uploads/student/2899059/692184c818ae0.jpg" alt="ELANTRA Image 1">
-                <h2>Відповідь залежить від тебе.</h2>
-                <p>Будь сильним. Вір у себе і побачиш, як розкривається твоя справжня сила.</p> 
-                <img src="https://learn.logikaschool.com/uploads/student/2899059/692184bfad131.jpg" alt="ELANTRA Image 2">
-                <h2>Постав під сумнів старі правила.</h2>
-                <p>Дизайн-концепція «Параметрична Динаміка» підкреслює геометричну естетику подовженого капоту і обтічних ліній даху, доповнюючи далекоглядний та інноваційний стиль.</p>
-                <img src="https://learn.logikaschool.com/uploads/student/2899059/6921849e78f6f.jpg" alt="ELANTRA Image 3">
-                <h2>Ти - попереду. Ми - поряд.</h2>
-                <p>Для тих, хто має сміливість та не боїться труднощів, Нова ELANTRA з тобою.</p>     
-                <img src="https://hyundai.com.ua/sites/all/themes/responsive/images/elantra2023/highlights/elantra-highlights-a-man-with-new-elantra-pc.jpg" alt="ELANTRA Image 4">
-            </div>
-        </section>
+    <!-- HERO -->
+    <section class="hero-section" id="golovna">
+        <img src="https://hyundai.com.ua/sites/all/themes/responsive/images/elantra2023/highlights/elantra-highlights-kv-pc.jpg"
+             class="hero-image" alt="Нова ELANTRA">
+        <div class="hero-content">
+            <h1>Нова ELANTRA</h1>
+        </div>
+    </section>
 
-        <section class="photo-slider">
-            <button class="slide-arrow left" onclick="prevSlide()">&#10094;</button>
+    <!-- TEXT + GALLERY -->
+    <section class="text-block fade-in" id="gallery">
+        <h2>Втілення сміливості.</h2>
+        <p>Нова ELANTRA виразна...</p>
 
-            <img id="sliderImage"
-                src="https://hyundai.com.ua/sites/default/files_actual/models-gallery/elantra-highlights-gallery-highlight-01-pc.jpg"
-                alt="ELANTRA">
+        <div class="image-gallery">
+            <img class="fade-in" src="https://learn.logikaschool.com/uploads/student/2899059/692184c818ae0.jpg">
+            <h2 class="fade-in">Відповідь залежить від тебе.</h2>
+            <p class="fade-in">Будь сильним...</p>
 
-            <button class="slide-arrow right" onclick="nextSlide()">&#10095;</button>
-        </section>
+            <img class="fade-in" src="https://learn.logikaschool.com/uploads/student/2899059/692184bfad131.jpg">
+            <h2 class="fade-in">Постав під сумнів старі правила.</h2>
+            <p class="fade-in">Дизайн-концепція...</p>
 
-        <section class="specs-section" id="texnik">
-            <h2 class="specs-title">Технічні характеристики</h2>
-            <div class="specs-selector">
-                <span>Виберіть тип: </span>
-                <strong>Gamma 1.6 MPI</strong>
-            </div>
-            <div class="specs-table">
+            <img class="fade-in" src="https://learn.logikaschool.com/uploads/student/2899059/6921849e78f6f.jpg">
+            <h2 class="fade-in">Ти - попереду. Ми - поряд.</h2>
+            <p class="fade-in">Для тих...</p>
 
-                <h3>Основна інформація</h3>
-                <table>
+            <img class="fade-in" src="https://hyundai.com.ua/sites/all/themes/responsive/images/elantra2023/highlights/elantra-highlights-a-man-with-new-elantra-pc.jpg">
+        </div>
+    </section>
+
+    <!-- SLIDER -->
+    <section class="photo-slider fade-in">
+        <button class="slide-arrow left" onclick="prevSlide()">&#10094;</button>
+        <img id="sliderImage" src="https://hyundai.com.ua/sites/default/files_actual/models-gallery/elantra-highlights-gallery-highlight-01-pc.jpg">
+        <button class="slide-arrow right" onclick="nextSlide()">&#10095;</button>
+    </section>
+
+    <!-- SPECS -->
+    <section class="specs-section fade-in" id="texnik">
+        <h2 class="specs-title">Технічні характеристики</h2>
+        
+        <div class="specs-selector">Виберіть тип: <strong>Gamma 1.6 MPI</strong></div>
+
+        <div class="specs-table">
+            <h3>Основна інформація</h3>
+            <table>
                     <tr><td>Категорія</td><td>Легкові автомобілі</td></tr>
                     <tr><td>Назва двигуна</td><td>Gamma 1.6 Mpi</td></tr>
                     <tr><td>Модель авто</td><td>Elantra NX7 PE</td></tr>
@@ -317,21 +343,19 @@
                     <tr><td>Колісна база, мм</td><td>2720</td></tr>
                     <tr><td>Об'єм багажника, л</td><td>402</td></tr>
                 </table>
-                
-            </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
+    <!-- FOOTER -->
     <footer>
-        
-        <img class="swabra" src="https://hyundai.com.ua/sites/default/files_actual/logo.svg" alt="Hyundai Logo">
-        <h1>© 2025 | Хюндай Мотор Україна | Усі права захищені</h1>
-        
+        <img class="swabra" src="https://hyundai.com.ua/sites/default/files_actual/logo.svg" alt="">
+        <h1>© 2025 | Хюндай Мотор Україна</h1>
         <p>Розміщена на цьому сайті інформація щодо наявності продукції, її характеристик, (орієнтовних) цін, інших умов її продажу, а також умов надання будь-яких послуг не є пропозицією укласти договір (офертою). Така інформація стосується наявних на складах Товариства автомобілів, щодо яких здійснене митне оформлення; вона може не бути остаточною і підлягає уточненню у відповідного дилерського центру Hyundai.</p>
     </footer>
 
+    <!-- SCRIPT -->
     <script>
-        /* JavaScript */
+        /* --- Slider logic --- */
         const sliderPhotos = [
             "https://hyundai.com.ua/sites/default/files_actual/models-gallery/elantra-highlights-gallery-highlight-01-pc.jpg",
             "https://hyundai.com.ua/sites/default/files_actual/models-gallery/elantra-highlights-gallery-sophisticated-02-pc.jpg",
@@ -345,18 +369,35 @@
         let currentSlide = 0;
 
         function updateSlide() {
-            document.getElementById("sliderImage").src = sliderPhotos[currentSlide];
+            document.getElementById("sliderImage").style.opacity = "0";
+            setTimeout(() => {
+                document.getElementById("sliderImage").src = sliderPhotos[currentSlide];
+                document.getElementById("sliderImage").style.opacity = "1";
+            }, 300);
         }
 
         function nextSlide() {
             currentSlide = (currentSlide + 1) % sliderPhotos.length;
             updateSlide();
         }
-
         function prevSlide() {
             currentSlide = (currentSlide - 1 + sliderPhotos.length) % sliderPhotos.length;
             updateSlide();
         }
+
+        /* --- Fade-in scroll animation --- */
+        const fadeElements = document.querySelectorAll('.fade-in');
+        function showOnScroll() {
+            fadeElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+        window.addEventListener('scroll', showOnScroll);
+        window.addEventListener('load', showOnScroll);
     </script>
+
 </body>
 </html>
